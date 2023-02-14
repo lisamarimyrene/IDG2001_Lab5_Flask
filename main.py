@@ -1,13 +1,20 @@
-from flask import Flask, jsonify
-import os
+# Connect to an API
+import requests
+import json
 
-app = Flask(__name__)
+response_API = requests.get('https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0')
+print(response_API)
+
+# Get the data from the API
+data = response_API.text
+print(data)
+
+# Parse the data into JSON format
+parse_json = json.loads(data)
+
+# Extract the data and put in into a JSON file
+with open("weatherData.json", "w") as outfile:
+    outfile.write(data)
 
 
-@app.route('/')
-def index():
-    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
-
-
-if __name__ == '__main__':
-    app.run(debug=True, port=os.getenv("PORT", default=5000))
+# https://www.askpython.com/python/examples/pull-data-from-an-api
