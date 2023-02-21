@@ -1,11 +1,14 @@
 # Flask is a server, same as Express
 from flask import Flask, request
+from database import db
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return '<h1>Hello, World!</h1>'
+    documents = db.my_collection.find()
+    return {"documents": documents}
+    # return '<h1>Hello, World!</h1>'
 
 
 @app.route('/about/')
