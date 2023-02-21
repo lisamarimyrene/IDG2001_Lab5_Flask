@@ -1,7 +1,12 @@
 from pymongo import MongoClient
 import os
 
-client = MongoClient(os.getenv("mongodb://mongo:7ttkSOoWJ9zRZ2NGdtAm@containers-us-west-53.railway.app:7181"))
+MONGOUSER = "mongo"
+MONGOPASSWORD = "7ttkSOoWJ9zRZ2NGdtAm"
+MONGOGOHOST = "containers-us-west-53.railway.app"
+MONGOPORT = 7181
+
+client = MongoClient(os.getenv("mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}"))
 
 db = client.get_default_database()
 
