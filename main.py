@@ -15,6 +15,7 @@ parse_json = json.loads(data)
 # Extract the data and put in into a JSON file
 with open("weatherData.json", "w") as outfile:
     outfile.write(data)
+#
 
 
 # https://www.askpython.com/python/examples/pull-data-from-an-api
